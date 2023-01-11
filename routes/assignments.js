@@ -13,9 +13,8 @@ function getAssignments(req, res){
 }
 */
 // Récupérer tous les assignments (GET) pour la pagination
-function getAssignments(req, res) {
+const getAssignments = async (req, res) => {
     var aggregateQuery = Assignment.aggregate();
-
     Assignment.aggregatePaginate(aggregateQuery,
       {
         page: parseInt(req.query.page) || 1,
@@ -48,6 +47,10 @@ function postAssignment(req, res){
     assignment.nom = req.body.nom;
     assignment.dateDeRendu = req.body.dateDeRendu;
     assignment.rendu = req.body.rendu;
+    assignment.auteur = req.body.auteur;
+    assignment.matiere = req.body.matiere;
+    assignment.note = req.body.note;
+    assignment.remarque = req.body.remarque;
 
     console.log("POST assignment reçu :");
     console.log(assignment)
